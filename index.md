@@ -33,6 +33,7 @@ Marker|Description
 *section_id*|Holds the section_id that was requested.  
 
 #### example given (twig)
+{% raw %}
 ```html
 
 {{ autoescape false %}  
@@ -40,6 +41,7 @@ Marker|Description
 {{ endautoescape %}
 
 ```
+{% endraw %}
 
 2021.10 - Aldus
 

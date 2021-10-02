@@ -1,37 +1,46 @@
-## Welcome to GitHub Pages
+### Preface
+Private module study for [LEPTON-CMS][1] 5.x  
+_This is nothing more than a private playground._
 
-You can use the [editor on GitHub](https://github.com/AMASP-workbench/display_section/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+### Requirements
+- [LEPTON CMS][1], Version >= 5.3
+- PHP 7.4 (8.0 recommented)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### similar to "sectionPicker"
+but  
+- handles also header.inc and footer.inc.php of the specifi module.
+- handles also specific css and js files of the module.
 
-### Markdown
+### Use as droplet
+```php
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+[[display_section?sid=34]]
+// sid is a valid section id
+```
+  
+Params|Description
+-----|-----
+*sid*|The requested section_id.
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
+### Template
+- error.lte
+- or ~/templates/*frontendtemplate*/frontend/display_section/error.lte
 
-- Bulleted
-- List
+Marker|Description
+-----|-----
+*message*|Holds the default (error-)message as string.  
+*section_id*|Holds the section_id that was requested.  
 
-1. Numbered
-2. List
+#### example given (twig)
+```html
 
-**Bold** and _Italic_ and `Code` text
+{{ autoescape false %}  
+<span class="mod_display_section_error">{{ message }}</span>  
+{{ endautoescape %}
 
-[Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+2021.10 - Aldus
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AMASP-workbench/display_section/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+[1]: https://lepton-cms.org "LEPTON CMS"

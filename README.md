@@ -1,6 +1,6 @@
 # display section
 
-Private module study for [LEPTON-CMS][1] 5.x
+Private module study for [LEPTON-CMS][1] 5.x  
 _This is nothing more than a private playground._
 
 #### similar to "sectionPicker"
@@ -8,7 +8,7 @@ but
 - handles also header.inc and footer.inc.php of the specifi module.
 - handles also specific css and js files of the module.
 
-### use as droplet
+#### use as droplet
 ```php
 
 [ [display_section?sid=34]]
@@ -20,7 +20,7 @@ Params|Description
 *sid*|The requested section_id.
 
 
-### template
+#### template
 - error.lte
 - or ~/templates/*frontendtemplate*/frontend/display_section/error.lte
 
@@ -30,7 +30,7 @@ Marker|Description
 *section_id*|Holds the section_id that was requested.
 
 
-### Requirements
+#### Requirements
 - [LEPTON CMS][1], Version >= 5.3
 
 

@@ -1,6 +1,6 @@
 ### Preface
 Private module study for [LEPTON-CMS][1] 5.x  
-_This is nothing more than a private playground._
+_This is nothing more and nothing less than a private playground._
 
 ### Requirements
 - [LEPTON CMS][1], Version >= 5.3

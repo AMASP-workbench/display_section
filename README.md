@@ -37,7 +37,7 @@ Marker|Description
 ```html
 
 {{ autoescape false %}  
-<span class="mod_display_section_error">{ { message }}</span>  
+<span class="mod_display_section_error">{{ message }}</span>  
 {{ endautoescape %}
 
 ```

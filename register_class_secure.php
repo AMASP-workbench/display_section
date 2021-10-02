@@ -14,7 +14,7 @@
  */
 
 $files_to_register = [
-    "index.php"
+    "index.php" // only for testing purpose
 ];
 
 LEPTON_secure::getInstance()->accessFiles( $files_to_register );

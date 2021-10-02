@@ -16,6 +16,7 @@ but
 
 [[display_section?sid=34]]
 // sid is a valid section id
+
 ```
   
 Params|Description

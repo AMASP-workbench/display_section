@@ -1,5 +1,5 @@
 <?php
-// First three lines of this file are ignored and can be used to store some information.
+// First three lines of this file are ignored and can be use to store some information.
 // E.g. for an internal version like 0.1.3.23 - 2021-08-28
 /**
  *

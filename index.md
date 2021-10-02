@@ -15,8 +15,12 @@ but
 {% raw %}
 ```code
 
+<p>some example text here</p>
+
 [[display_section?sid=34]]
-// sid is a valid section id
+<!-- sid is a valid section id -->
+
+<p>just another html content here ...</p>
 
 ```
 {% endraw %}

@@ -36,9 +36,9 @@ Marker|Description
 #### example given (twig)
 ```html
 
-{ { autoescape false %}  
+{{ autoescape false %}  
 <span class="mod_display_section_error">{ { message }}</span>  
-{ { endautoescape %}
+{{ endautoescape %}
 
 ```
 

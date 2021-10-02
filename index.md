@@ -12,12 +12,14 @@ but
 - handles also specific css and js files of the module.
 
 ### Use as droplet
-```php
+{% raw %}
+```code
 
 [[display_section?sid=34]]
 // sid is a valid section id
 
 ```
+{% endraw %}
   
 Params|Description
 -----|-----

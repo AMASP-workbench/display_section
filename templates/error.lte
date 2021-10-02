@@ -1,0 +1,4 @@
+{% autoescape false %}
+<!-- Error message from module "display section" -->
+<span class="mod_display_section_error">{{ message }}</span>
+{% endautoescape %}

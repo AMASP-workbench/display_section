@@ -24,6 +24,14 @@ declare(strict_types=1);
 class display_section extends LEPTON_abstract
 {
     /**
+     * Holds the path to the internal modules-directory.
+     * 
+     * @access public
+     * @var string The internal name of the modules-directory.  
+     */
+    const MODULES_DIR = "/modules/";
+    
+    /**
      * Is the returned sting an error message or not?  
      * 
      * @access  public
@@ -144,7 +152,7 @@ class display_section extends LEPTON_abstract
         ob_start();
 
         //  [2.2.3] Require the view of the module
-        require LEPTON_PATH.'/modules/'.$module.'/view.php'; 
+        require LEPTON_PATH.self::MODULES_DIR.$module.'/view.php'; 
 
         //  [2.2.4] Get the generated content into a var.
         $section_content .= ob_get_contents();
@@ -156,7 +164,7 @@ class display_section extends LEPTON_abstract
         $links_js = "\n<!-- js -->\n";
 
         //  [2.2.6] Is a "headers.inc.php" in the module-directory?
-        $sPathToHeaders = "/modules/".$module."/headers.inc.php";
+        $sPathToHeaders = self::MODULES_DIR.$module."/headers.inc.php";
         if(file_exists( LEPTON_PATH.$sPathToHeaders ) )
         {
             global $mod_headers;
@@ -339,7 +347,7 @@ class display_section extends LEPTON_abstract
         $sLinksToReturn = "";
         
         // -- 2
-        $sLookUpPath = LEPTON_PATH."/modules/".$module."/footers.inc.php";
+        $sLookUpPath = LEPTON_PATH.self::MODULES_DIR.$module."/footers.inc.php";
         
         // -- 3
         if(!file_exists($sLookUpPath))
@@ -415,7 +423,7 @@ class display_section extends LEPTON_abstract
             // set page_id of the correspondenting section
             $page_id = $sModuleInfo['page_id'];
             
-            $sLookFileName = LEPTON_PATH."/modules/".$sModuleInfo['module']."/headers.inc.php";
+            $sLookFileName = LEPTON_PATH.self::MODULES_DIR.$sModuleInfo['module']."/headers.inc.php";
 
             // -- 3
             if(file_exists($sLookFileName))

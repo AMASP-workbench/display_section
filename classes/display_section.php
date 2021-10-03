@@ -24,6 +24,7 @@ declare(strict_types=1);
 class display_section extends LEPTON_abstract implements display_section\classes\interfaces\environment
 {
     use display_section\classes\traits\html;
+    
     /**
      * Is the returned sting an error message or not?  
      * 
@@ -199,7 +200,6 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         
                         // [2.2.6.2.1.2] Build script-tag 
                         $links_js .= "\n<script src='".LEPTON_URL."/".$aPathRef."'></script>\n";
-
                     }
                 }
             }
@@ -243,8 +243,12 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         'media' => 'all'
                     ];
 
-                $links_css  .= "\n<link href='".LEPTON_URL."/".$aPathRef."' rel='stylesheet' media='all' />\n";
-
+                //$links_css  .= "\n<link href='".LEPTON_URL."/".$aPathRef."' rel='stylesheet' media='all' />\n";
+                $links_css = self::buildLinkTag( [
+                    'href'  => LEPTON_URL."/".$aPathRef,
+                    'rel'   => "stylesheet",
+                    'media' => "all"
+                ] );
                 break; // stop loop
                 
             }

@@ -19,17 +19,32 @@ trait html
 {
     /**
      * 
-     * @param array $attribs
-     * @return string
+     * @param   array   $attribs    Assoc. array with the attributes.  
+     * @return  string  The gemerated (HTML-)link-tag.  
      */
     public static function buildLinkTag( array $attribs=[] ) : string
     {
-        $sHTML = "\n<link ";
+        $sHTML = "\n<!-- build by trait -->\n<link ";
         foreach($attribs as $key => $value)
         {
             $sHTML .= " ".$key."=\"".$value."\"";
         }
         return $sHTML.">\n";
+    }
+    
+    /**
+     * 
+     * @param   array   $attribs    Assoc. array with the attributes.  
+     * @return string   The generated (HTML-)script-tag.  
+     */
+    public static function buildScriptTag( array $attribs=[] ) : string
+    {
+        $sHTML = "\n<script ";
+        foreach($attribs as $key => $value )
+        {
+            $sHTML .= " ".$key."=\"".$value."\"";
+        }
+        return $sHTML."></script>\n";
     }
     
 }

@@ -1,6 +1,8 @@
 ### Preface
 Private module study for [LEPTON-CMS][1] 5.x  
-_This is nothing more and nothing less than a private playground._
+_This is nothing more and nothing less than a private playground._  
+
+Doxygen-generated [class-documentation](/html/) is here: [classes](/html/).
 
 ### Requirements
 - [LEPTON CMS][1], Version >= 5.3

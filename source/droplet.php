@@ -1,11 +1,11 @@
 <?php
 // First three lines of this file are ignored and can be use to store some information.
-// E.g. for an internal version like 0.1.3.23 - 2021-08-28
+// E.g. for an internal version-string like "0.1.3.23 - 2021-10-03"
 /**
  *
- *  @version 0.1.8.0
+ *  @version 0.1.9.0
  */
-global $database, $TEXT, $oLEPTON, $page_id, $section_id, $HEADERS;
+global $database, $TEXT, $oLEPTON, $page_id, $section_id, $HEADERS, $FOOTERS;
 
 // -- 1 get an instance of the class 
 $oDS = display_section::getInstance();

@@ -23,6 +23,7 @@ declare(strict_types=1);
  */
 class display_section extends LEPTON_abstract implements display_section\classes\interfaces\environment
 {
+    use display_section\classes\traits\html;
     /**
      * Is the returned sting an error message or not?  
      * 

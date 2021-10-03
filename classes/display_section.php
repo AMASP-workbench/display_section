@@ -185,9 +185,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                                 'href'  => LEPTON_URL."/".$aPathRef['file'],
                                 'media' => ($aPathRef['media'] ?? "all")
                         ]);
-                        
                     }
-
                 }
             }
 
@@ -204,9 +202,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         $HEADERS['frontend']['js'][] = $aPathRef;
                         
                         // [2.2.6.2.1.2] Build script-tag 
-                        $links_js .= self::buildScriptTag([
-                            'src'   => LEPTON_URL."/".$aPathRef
-                        ]);
+                        $links_js .= self::buildScriptTag([ 'src'   => LEPTON_URL."/".$aPathRef ]);
                     }
                 }
             }
@@ -250,9 +246,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         'media' => 'all'
                     ];
 
-                $links_css = self::buildLinkTag( [
-                    'href'  => LEPTON_URL."/".$aPathRef
-                ] );
+                $links_css = self::buildLinkTag(['href'  => LEPTON_URL."/".$aPathRef ]);
                 break; // stop loop
                 
             }
@@ -279,12 +273,8 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 if(true === file_exists(LEPTON_PATH."/".$f))
                 {
                     $links .= ($key === "css")
-                        ? self::buildLinkTag([
-                            'href'  => LEPTON_URL."/".$f
-                           ])
-                        : self::buildScriptTag([
-                            'src'   => LEPTON_URL."/".$f
-                           ])
+                        ? self::buildLinkTag(  [ 'href'  => LEPTON_URL."/".$f ])
+                        : self::buildScriptTag([ 'src'   => LEPTON_URL."/".$f ])
                         ;
                 }
             }

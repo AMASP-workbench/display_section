@@ -21,40 +21,8 @@ declare(strict_types=1);
  * @author Dietrich Roland Pehlke (Aldus)
  * 
  */
-class display_section extends LEPTON_abstract
+class display_section extends LEPTON_abstract implements display_section\classes\interfaces\environment
 {
-    /**
-     * [1.1.1]  The name of the moduledirectory without leading directory-seperator. 
-     * 
-     * @access  public
-     * @var     string  The name of the moduledirectory without leading directory-seperator.  
-     */
-    const MODULES_DIRNAME = "modules/";
-    
-    /**
-     * [1.1.2]  Holds the path to the internal modules-directory.
-     * 
-     * @access  public
-     * @var     string  The internal name of the modules-directory with leading directory-seperator.  
-     */
-    const MODULES_DIR = "/".self::MODULES_DIRNAME;
-
-    /**
-     * [1.2.1]  The name of the templates-directory without leading directory-seperator. 
-     * 
-     * @access  public
-     * @var     string  The name of the templates-directory without leading directory-seperator.  
-     */    
-    const TEMPLATES_DIRNAME = "templates/";
-    
-    /**
-     * [1.3.2]  Holds the path to the internal modules-directory.
-     * 
-     * @access  public
-     * @var     string  The internal name of the modules-directory with leading directory-seperator.  
-     */
-    const FRONTEND_DIR = "/frontend/";
-    
     /**
      * Is the returned sting an error message or not?  
      * 

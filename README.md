@@ -9,7 +9,7 @@ _This is nothing more than a private playground._
 
 ### similar to "sectionPicker"
 but  
-- handles also header.inc and footer.inc.php of the specifi module.
+- handles also header.inc and footer.inc.php of the specific module.
 - handles also specific css and js files of the module.
 
 ### Use as droplet

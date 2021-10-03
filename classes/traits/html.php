@@ -17,6 +17,11 @@ namespace display_section\classes\traits;
 
 trait html 
 {
+    public static $CSS_ATTRIBUTES = [
+        'rel'   => "stylesheet",
+        'media' => "all"
+    ];
+    
     /**
      * 
      * @param   array   $attribs    Assoc. array with the attributes.  
@@ -24,7 +29,10 @@ trait html
      */
     public static function buildLinkTag( array $attribs=[] ) : string
     {
-        $sHTML = "\n<!-- build by trait -->\n<link ";
+        $sHTML = "\n<!-- build css-link by trait -->\n<link ";
+        
+        self::sanitizeCssAtrribs( $attribs );
+        
         foreach($attribs as $key => $value)
         {
             $sHTML .= " ".$key."=\"".$value."\"";
@@ -47,4 +55,17 @@ trait html
         return $sHTML."></script>\n";
     }
     
+    /**
+     * 
+     * @param array $attribs
+     */
+    public static function sanitizeCssAtrribs( array &$attribs=[] )
+    {
+        foreach(self::$CSS_ATTRIBUTES as $key => $value)
+        {
+            if(!isset($attribs[ $key ])) {
+                $attribs[ $key ] = $value;
+            }
+        }
+    }
 }

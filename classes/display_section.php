@@ -154,8 +154,8 @@ class display_section extends LEPTON_abstract implements display_section\classes
         //  [2.2.5] Try to get the frontend files of the module
         //  [2.2.5.1] Init temporary vars
         $links="\n<!-- display section start [".$sid."]-->\n";
-        $links_css = "\n<!-- css -->\n";
-        $links_js = "\n<!-- js -->\n";
+        $links_css = "\n<!-- css[-] -->\n";
+        $links_js = "\n<!-- js[-] -->\n";
 
         //  [2.2.6] Is a "headers.inc.php" in the module-directory?
         $sPathToHeaders = self::MODULES_DIR.$module."/headers.inc.php";
@@ -180,7 +180,12 @@ class display_section extends LEPTON_abstract implements display_section\classes
                             'media' => ($aPathRef['media'] ?? "all"),
                             'file'  => $aPathRef['file']
                         ];
-                        $links_css  .= "\n<link href='".LEPTON_URL."/".$aPathRef['file']."' rel='stylesheet' media='".($aPathRef['media'] ?? "all")."' />\n";
+                        
+                        $links_css .= self::buildLinkTag([
+                                'href'  => LEPTON_URL."/".$aPathRef['file'],
+                                'media' => ($aPathRef['media'] ?? "all")
+                        ]);
+                        
                     }
 
                 }
@@ -199,7 +204,9 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         $HEADERS['frontend']['js'][] = $aPathRef;
                         
                         // [2.2.6.2.1.2] Build script-tag 
-                        $links_js .= "\n<script src='".LEPTON_URL."/".$aPathRef."'></script>\n";
+                        $links_js .= self::buildScriptTag([
+                            'src'   => LEPTON_URL."/".$aPathRef
+                        ]);
                     }
                 }
             }
@@ -244,9 +251,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                     ];
 
                 $links_css = self::buildLinkTag( [
-                    'href'  => LEPTON_URL."/".$aPathRef,
-                    'rel'   => "stylesheet",
-                    'media' => "all"
+                    'href'  => LEPTON_URL."/".$aPathRef
                 ] );
                 break; // stop loop
                 
@@ -275,9 +280,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 {
                     $links .= ($key === "css")
                         ? self::buildLinkTag([
-                            'href'  => LEPTON_URL."/".$f,
-                            'rel'   => "stylesheet",
-                            'media' => "all"
+                            'href'  => LEPTON_URL."/".$f
                            ])
                         : self::buildScriptTag([
                             'src'   => LEPTON_URL."/".$f

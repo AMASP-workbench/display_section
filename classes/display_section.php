@@ -24,12 +24,28 @@ declare(strict_types=1);
 class display_section extends LEPTON_abstract
 {
     /**
-     * Holds the path to the internal modules-directory.
+     * [1.1.1]  The name of the moduledirectory without leading directory-seperator. 
      * 
-     * @access public
-     * @var string The internal name of the modules-directory.  
+     * @access  public
+     * @var     string  The name of the moduledirectory without leading directory-seperator.  
      */
-    const MODULES_DIR = "/modules/";
+    const MODULES_DIRNAME = "modules/";
+    
+    /**
+     * [1.1.2]  Holds the path to the internal modules-directory.
+     * 
+     * @access  public
+     * @var     string  The internal name of the modules-directory with leading directory-seperator.  
+     */
+    const MODULES_DIR = "/".self::MODULES_DIRNAME;
+
+    /**
+     * [1.2.1]  The name of the templates-directory without leading directory-seperator. 
+     * 
+     * @access  public
+     * @var     string  The name of the templates-directory without leading directory-seperator.  
+     */    
+    const TEMPLATES_DIRNAME = "templates/";
     
     /**
      * Is the returned sting an error message or not?  
@@ -222,16 +238,16 @@ class display_section extends LEPTON_abstract
 
         $prefly_look_up_paths = [
             "css" => [
-                "templates/".$sTempTemplateName."/frontend/".$module."/css/frontend.css",
-                "templates/".$sTempTemplateName."/frontend/".$module."/frontend.css",
-                "modules/".$module."/css/frontend.css",
-                "modules/".$module."/frontend.css"
+                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/css/frontend.css",
+                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/frontend.css",
+                self::MODULES_DIRNAME.$module."/css/frontend.css",
+                self::MODULES_DIRNAME.$module."/frontend.css"
             ], 
             "js" => [
-                "templates/".$sTempTemplateName."/frontend/".$module."/js/frontend.js",
-                "templates/".$sTempTemplateName."/frontend/".$module."/frontend.js",
-                "modules/".$module."/js/frontend.js",
-                "modules/".$module."/frontend.js"	
+                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/js/frontend.js",
+                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/frontend.js",
+                self::MODULES_DIRNAME.$module."/js/frontend.js",
+                self::MODULES_DIRNAME.$module."/frontend.js"	
             ]
         ];
 

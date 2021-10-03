@@ -13,7 +13,7 @@ but
 
 ### Use as droplet
 {% raw %}
-```code
+```html
 
 <p>some example text here</p>
 

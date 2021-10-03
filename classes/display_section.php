@@ -243,7 +243,6 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         'media' => 'all'
                     ];
 
-                //$links_css  .= "\n<link href='".LEPTON_URL."/".$aPathRef."' rel='stylesheet' media='all' />\n";
                 $links_css = self::buildLinkTag( [
                     'href'  => LEPTON_URL."/".$aPathRef,
                     'rel'   => "stylesheet",

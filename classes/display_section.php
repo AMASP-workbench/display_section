@@ -274,8 +274,14 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 if(true === file_exists(LEPTON_PATH."/".$f))
                 {
                     $links .= ($key === "css")
-                        ? "\n<link href='".LEPTON_URL."/".$f."' rel='stylesheet' media='all' />\n"
-                        : "\n<script src='".LEPTON_URL."/".$f."'></script>\n"
+                        ? self::buildLinkTag([
+                            'href'  => LEPTON_URL."/".$f,
+                            'rel'   => "stylesheet",
+                            'media' => "all"
+                           ])
+                        : self::buildScriptTag([
+                            'src'   => LEPTON_URL."/".$f
+                           ])
                         ;
                 }
             }

@@ -39,7 +39,7 @@ trait html
      */
     public static function buildScriptTag( array $attribs=[] ) : string
     {
-        $sHTML = "\n<script ";
+        $sHTML = "\n<!-- build by trait -->\n<script ";
         foreach($attribs as $key => $value )
         {
             $sHTML .= " ".$key."=\"".$value."\"";

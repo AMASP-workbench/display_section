@@ -1,0 +1,31 @@
+/**
+ *  CSS for Doxygen documentations
+ */
+
+td#projectlogo img {
+    margin: 3px 10px;
+    border: 1px solid #9eb2d0;
+}
+
+#projectnumber {
+    color: #880000;
+    margin-left: 12px;
+}
+
+#projectbrief {
+    font-family: "Times", serif;
+    font-style: italic;
+    letter-spacing: 0.08em;
+}
+
+#titlearea {
+    background-color: #9eb2d075;
+}
+
+div.fragment {
+    padding: 20px 10px;
+}
+
+div.line {
+    margin: 0 0 9px 0;
+}

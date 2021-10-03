@@ -48,6 +48,14 @@ class display_section extends LEPTON_abstract
     const TEMPLATES_DIRNAME = "templates/";
     
     /**
+     * [1.3.2]  Holds the path to the internal modules-directory.
+     * 
+     * @access  public
+     * @var     string  The internal name of the modules-directory with leading directory-seperator.  
+     */
+    const FRONTEND_DIR = "/frontend/";
+    
+    /**
      * Is the returned sting an error message or not?  
      * 
      * @access  public
@@ -238,14 +246,14 @@ class display_section extends LEPTON_abstract
 
         $prefly_look_up_paths = [
             "css" => [
-                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/css/frontend.css",
-                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/frontend.css",
+                self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/css/frontend.css",
+                self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/frontend.css",
                 self::MODULES_DIRNAME.$module."/css/frontend.css",
                 self::MODULES_DIRNAME.$module."/frontend.css"
             ], 
             "js" => [
-                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/js/frontend.js",
-                self::TEMPLATES_DIRNAME.$sTempTemplateName."/frontend/".$module."/frontend.js",
+                self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/js/frontend.js",
+                self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/frontend.js",
                 self::MODULES_DIRNAME.$module."/js/frontend.js",
                 self::MODULES_DIRNAME.$module."/frontend.js"	
             ]

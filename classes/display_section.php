@@ -183,8 +183,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                         
                         $links_css .= self::buildLinkTag([
                                 'href'  => LEPTON_URL."/".$aPathRef['file'],
-                                'media' => ($aPathRef['media'] ?? "all"),
-                                'onload'    => "console.log('call');"
+                                'media' => ($aPathRef['media'] ?? "all")
                         ]);
                     }
                 }

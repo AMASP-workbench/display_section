@@ -13,29 +13,25 @@
  *
  */
 
-// include secure-system to protect this file and the whole CMS! [2.1]
+// include secure-system to protect this file and the whole CMS! [2.2]
 if (defined('LEPTON_PATH')) {
     \framework\classes\lepton_system::TestFile(__FILE__);
 } else {
-    for ($i = 0, $root="", $found=false; $i < 7; $root=str_repeat("../", ++$i)."framework/classes/lepton_system.php")
-    {
-        if (file_exists($root))
-        {
-            require $root;
+    $r = "../../";
+    $s = "framework/classes/lepton_system.php";
+    for ($i = 0, $found = false, $r2 = $r . $s; $i < 7; $r .= "../", $r2 = $r . $s) {
+        if (file_exists($r2)) {
+            require $r2;
             \framework\classes\lepton_system::getInstance(__FILE__);
-            $found=true;
+            $found = true;
             break;
         }
     }
-    if($found === false)
-    {
-        trigger_error(
-            sprintf(
-                "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
-                filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING),
-                E_USER_ERROR
-            )
-        );
+    if ($found === false) {
+        trigger_error(sprintf(
+            "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
+            filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING),
+            E_USER_ERROR));
     }
 }
 // end include secure-system

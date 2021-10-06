@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 /**
  *  Display Section
- *  An experimental private module
+ *  An experimental private module for LEPTON-CMS  
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.1.9
+ *  @version        0.1.10
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -18,8 +18,9 @@ declare(strict_types=1);
 /**
  * Description of class display_section  
  * 
- * @author Dietrich Roland Pehlke (Aldus)
- * 
+ * @author  Dietrich Roland Pehlke (Aldus)
+ * @package development
+ *
  */
 class display_section extends LEPTON_abstract implements display_section\classes\interfaces\environment
 {

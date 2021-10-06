@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 /**
  *  Display Section
- *  An experimental private module
+ *  An experimental private module for LEPTON-CMS  
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.1.9
+ *  @version        0.1.10
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -18,8 +18,8 @@ declare(strict_types=1);
 /**
  * Class for install/upgrad module "display_section"
  *
- * @author  Dietrich Roland Pehlke (Aldus) [last]
- * @version 0.1.8.0
+ * @author  Dietrich Roland Pehlke (Aldus)
+ * @package development
  *
  */
 class display_section_install
@@ -37,13 +37,13 @@ class display_section_install
     
     public function __construct()
     {
-        // is the droplet installed?
+        // [1] Is the droplet installed?
         if(!$this->isInstalled())
         {
-            // No -> insert an entry in the database
+            // [1.1] Insert an entry in the database
             $this->install();
         } else {
-            // Yea -> upgrade
+            // [1.2] Upgrade
             $this->upgrade();
         }
     }
@@ -59,7 +59,8 @@ class display_section_install
     }
     
     /**
-     * Get the droplet sourcecode
+     * Get the droplet sourcecode.  
+     *
      * @return string
      */
     protected function getDropletSource() : string
@@ -69,12 +70,13 @@ class display_section_install
             FILE_IGNORE_NEW_LINES
         );
         
-        // skip first threelines/entries
+        // Skip first three lines/entries
         return implode("\n", array_slice($aTemp, self::DROPLETS_SOURCE_SKIP_LINES));
     }
     
     /**
-     * Looks inside the db for an entry for the droplet.
+     * Looks inside the db for an entry for the droplet.  
+     *
      * @return bool
      */
     protected function isInstalled() : bool
@@ -87,7 +89,7 @@ class display_section_install
     }
     
     /**
-     * Insert an entry into the currend database.
+     * Insert an entry into the currend database.  
      * 
      * @return bool
      */
@@ -113,7 +115,7 @@ class display_section_install
     }
     
     /**
-     * Update an entry inside the currend database
+     * Update an entry inside the currend database.  
      * 
      * @return bool
      */
@@ -132,4 +134,3 @@ class display_section_install
         );
     }
 }
-

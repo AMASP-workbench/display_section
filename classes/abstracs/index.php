@@ -15,7 +15,7 @@
 
 // include secure-system to protect this file and the whole CMS! [2.3]
 if (defined('LEPTON_PATH')) {
-    \framework\classes\lepton_system::TestFile(__FILE__);
+    \framework\classes\lepton_system::testFile(__FILE__);
 } else {
     ini_set("include_path", "./../../framework/classes/:./../../../framework/classes/:./../../../../framework/classes/:./../../../../../framework/classes/:./../../../../../../framework/classes/:./../../../../../../../framework/classes/:./../../../../../../../../framework/classes/:./../../../../../../../../../framework/classes/");
     spl_autoload("lepton_system");

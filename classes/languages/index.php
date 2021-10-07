@@ -30,5 +30,3 @@ if (defined('LEPTON_PATH')) {
     }
 }
 // end include secure-system
-
-echo LEPTON_tools::display( $_SERVER );

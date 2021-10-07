@@ -13,21 +13,16 @@
  *
  */
 
-// include secure-system to protect this file and the whole CMS! [2.2]
+// include secure-system to protect this file and the whole CMS! [2.3]
 if (defined('LEPTON_PATH')) {
     \framework\classes\lepton_system::TestFile(__FILE__);
 } else {
-    $r = "../../";
-    $s = "framework/classes/lepton_system.php";
-    for ($i = 0, $found = false, $r2 = $r . $s; $i < 7; $r .= "../", $r2 = $r . $s) {
-        if (file_exists($r2)) {
-            require $r2;
-            \framework\classes\lepton_system::getInstance(__FILE__);
-            $found = true;
-            break;
-        }
-    }
-    if ($found === false) {
+    ini_set("include_path", "./../../framework/classes/:./../../../framework/classes/:./../../../../framework/classes/:./../../../../../framework/classes/:./../../../../../../framework/classes/:./../../../../../../../framework/classes/:./../../../../../../../../framework/classes/:./../../../../../../../../../framework/classes/");
+    spl_autoload("lepton_system");
+    if(class_exists("framework\classes\lepton_system"))
+    {
+        \framework\classes\lepton_system::getInstance(__FILE__);
+    } else {
         trigger_error(sprintf(
             "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
             filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING),
@@ -35,3 +30,5 @@ if (defined('LEPTON_PATH')) {
     }
 }
 // end include secure-system
+
+echo LEPTON_tools::display( $_SERVER );

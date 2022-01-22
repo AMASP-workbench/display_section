@@ -14,7 +14,8 @@
  */
 
 $files_to_register = [
-    "index.php" // only for testing purpose
+    "index.php" ,   // only for testing purpose
+    "precheck.php"  // @notice - 2022-01-22: not realy clear if this one is needed here
 ];
 
 LEPTON_secure::getInstance()->accessFiles( $files_to_register );

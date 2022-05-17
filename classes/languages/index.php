@@ -19,13 +19,13 @@ if (defined('LEPTON_PATH'))
 {
     \framework\classes\lepton_system::testFile(__FILE__);
 } else {
-    for($i=0, $root = ""; $i <= 10; $i++, $root .= "../")
-    {
-        if(file_exists($root.SEC_FILE2))
-        {
-            require_once $root.SEC_FILE2; break;
-        }
-    }
+    $paths = new ArrayIterator(array("../","../../","../../../","../../../../","../../../../../","../../../../../../","../../../../../../../","../../../../../../../../","../../../../../../../../../","../../../../../../../../../../","../../../../../../../../../../../"));
+    iterator_apply($paths, function (Iterator $iterator) {
+            $r = $iterator->current();
+            if(file_exists($r.SEC_FILE2)) {require_once $r.SEC_FILE2;return false;} else {return true;}
+        }, array($paths)
+    );
+
     if(class_exists("framework\classes\lepton_system", true))
     { 
         \framework\classes\lepton_system::getInstance(__FILE__);
@@ -36,4 +36,3 @@ if (defined('LEPTON_PATH'))
             E_USER_ERROR));
     }
 }
-// end include class.secure.php

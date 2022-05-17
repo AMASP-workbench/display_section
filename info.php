@@ -6,7 +6,7 @@
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.1.11
+ *  @version        0.2.0
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -16,8 +16,8 @@
 $module_directory       = "display_section";
 $module_name            = "Display Section";
 $module_function        = "library";
-$module_version         = "0.1.11.0";
-$module_platform        = "5.3.x";
+$module_version         = "0.2.0.0";
+$module_platform        = "5.4.x";
 $module_delete          = true;
 $module_author          = "Dietrich Roland Pehlke (Aldus)";
 $module_license         = "CC BY 3.0";

@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.1.11
+ *  @version        0.2.0
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/

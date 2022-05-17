@@ -19,15 +19,11 @@ if (defined('LEPTON_PATH'))
 {
     \framework\classes\lepton_system::testFile(__FILE__);
 } else {
-    $root = "../";
-    $level = 0;
-    while (++$level <= 10)
+    for($i=0, $root = ""; $i <= 10; $i++, $root .= "../")
     {
-        $root .= "../";
         if(file_exists($root.SEC_FILE2))
         {
-            require_once $root.SEC_FILE2;
-            break;
+            require_once $root.SEC_FILE2; break;
         }
     }
     if(class_exists("framework\classes\lepton_system", true))

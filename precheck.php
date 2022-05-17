@@ -13,14 +13,21 @@
  *
  */
 
-// include secure-system to protect this file and the whole CMS! [2.3]
-if (defined('LEPTON_PATH')) {
+// include class.secure.php to protect this file and the whole CMS!
+if(!defined("SEC_FILE2")) { define("SEC_FILE2","/framework/classes/lepton_system.php"); }
+if (defined('LEPTON_PATH'))
+{
     \framework\classes\lepton_system::testFile(__FILE__);
 } else {
-    ini_set("include_path", "./../../framework/classes/:./../../../framework/classes/:./../../../../framework/classes/:./../../../../../framework/classes/:./../../../../../../framework/classes/:./../../../../../../../framework/classes/:./../../../../../../../../framework/classes/:./../../../../../../../../../framework/classes/");
-    spl_autoload("lepton_system");
-    if(class_exists("framework\classes\lepton_system"))
+    for($i=0, $root = ""; $i <= 10; $i++, $root .= "../")
     {
+        if(file_exists($root.SEC_FILE2))
+        {
+            require_once $root.SEC_FILE2; break;
+        }
+    }
+    if(class_exists("framework\classes\lepton_system", true))
+    { 
         \framework\classes\lepton_system::getInstance(__FILE__);
     } else {
         trigger_error(sprintf(
@@ -29,7 +36,7 @@ if (defined('LEPTON_PATH')) {
             E_USER_ERROR));
     }
 }
-// end include secure-system
+// end include class.secure.php
 
 // Checking Requirements
 $PRECHECK['LEPTON_VERSION'] = array(

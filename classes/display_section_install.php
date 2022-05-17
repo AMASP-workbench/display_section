@@ -26,7 +26,7 @@ class display_section_install
 {
     const DROPLET_NAME          = "display_section";
     const DROPLET_DESCRIPTION   = "An experimental private work";
-    const DROPLET_COMMENT       = "Use: [[display_section?sid=34]]";
+    const DROPLET_COMMENT       = "Use: [[display_section?sid=42]]";
     
     const DROPLET_SOURCE_FILE   = "/source/droplet.php";
     

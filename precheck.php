@@ -19,7 +19,7 @@ if (defined('LEPTON_PATH'))
 {
     \framework\classes\lepton_system::testFile(__FILE__);
 } else {
-    $a = explode( DIRECTORY_SEPARATOR, __DIR__ );
+    $a = explode( DIRECTORY_SEPARATOR, __DIR__ ); array_pop($a);
     $n = count($a);
     for($i=0;$i<$n;$i++,array_pop($a)) {
         $fPath = implode(DIRECTORY_SEPARATOR, $a).SEC_FILE2;

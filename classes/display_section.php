@@ -95,11 +95,11 @@ class display_section extends LEPTON_abstract implements display_section\classes
      *
      * @code{.php}
      *      // example  
-	 *      display_section::getInstance()->getSection( 123, $droplet_HTML_source);
-	 *  
-	 *      // droplet  -> belongs to the section_id 123 in this example
-	 *      [[display_section?sid=123]]
-	 * @endcode
+     *      display_section::getInstance()->getSection( 123, $droplet_HTML_source);
+     *  
+     *      // droplet  -> belongs to the section_id 123 in this example
+     *      [[display_section?sid=123]]
+     * @endcode
      *  
      */
     public function getSection( int $sid, string &$sPageSource ) : string
@@ -310,7 +310,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         //  [4.0]   Return the contend to the "caller".
         return $section_content;
     }
-    
+
     /**
      *  Loop through $HEADERS['css'] to find a given link here!
      * 
@@ -325,7 +325,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         }
         return false; // none match
     }
-    
+
     /**
      * Try to get the footer.inc.php
      * 
@@ -370,7 +370,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         }
         return $sLinksToReturn;
     }
-    
+
     /**
      * Format the (error-) message by a template
      * 
@@ -389,7 +389,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 ]
         );
     }
-    
+
     /**
      * More or less experimental
      * 

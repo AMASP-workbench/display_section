@@ -17,6 +17,6 @@ namespace display_section\classes\languages;
 
 class EN extends \display_section\classes\abstracs\language
 {
-    const NO_SECTION_FOUND = "As it looks like there is no section with the id %s here!";
+    const NO_SECTION_FOUND = "There is no section with the id %s here!";
 
 }

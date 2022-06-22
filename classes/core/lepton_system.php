@@ -15,7 +15,7 @@
  *
  */
 
-namespace framework\classes;
+namespace display_section\classes\core;
 
 /**
  * NOTICE - this one needs another sec-header block!
@@ -117,7 +117,8 @@ class lepton_system
     public function initialize()
     {
         // -- [1]
-        self::$LEPTON_PATH = \dirname(\dirname(__DIR__)).DIRECTORY_SEPARATOR;
+        self::$LEPTON_PATH = \dirname(\dirname(\dirname(\dirname(__DIR__)))).DIRECTORY_SEPARATOR;
+        
         $this->install_path = self::$LEPTON_PATH.$this->install_path;
         
         // -- [2]

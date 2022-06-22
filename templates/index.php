@@ -14,19 +14,20 @@
  */
 
 // include class.secure.php to protect this file and the whole CMS!
-if(!defined("SEC_FILE2")) { define("SEC_FILE2","/framework/classes/lepton_system.php"); }
+if(!defined("SEC_FILE2")) { define("SEC_FILE2","/classes/core/lepton_system.php"); }
 if (defined('LEPTON_PATH'))
 {
-    \framework\classes\lepton_system::testFile(__FILE__);
+    \display_section\classes\core\lepton_system::testFile(__FILE__);
 } else {
-    $a = explode( DIRECTORY_SEPARATOR, __DIR__ ); array_pop($a);
+    $a = explode( DIRECTORY_SEPARATOR, __DIR__ );
     $n = count($a);
     for($i=0;$i<$n;$i++,array_pop($a)) {
         $fPath = implode(DIRECTORY_SEPARATOR, $a).SEC_FILE2;
         if(file_exists($fPath)) { require_once $fPath; break; }   
     }
-    if(class_exists("framework\classes\lepton_system", true)) {
-        \framework\classes\lepton_system::getInstance(__FILE__);
+    
+    if(class_exists("display_section\classes\core\lepton_system", true)) {
+        \display_section\classes\core\lepton_system::getInstance(__FILE__);
     } else {
         trigger_error(sprintf(
             "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",

@@ -31,7 +31,7 @@ if (defined('LEPTON_PATH'))
     } else {
         trigger_error(sprintf(
             "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
-            filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING),
-            E_USER_ERROR));
+            filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING)),
+            E_USER_ERROR);
     }
 }

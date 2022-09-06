@@ -32,15 +32,15 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * @access  public
      * @var bool
      */
-    public $isError = false;
+    public bool $isError = false;
     
     /**
      * Holds the handled sectionId
      * @access  public
-     * @var     integer Hold the currend section id  
+     * @var     integer Hold the current section id
      * 
      */
-    public $iCurrentSectionID = 0;
+    public int $iCurrentSectionID = 0;
     
     /**
      * Should the ID be emphasized in the error messages?  
@@ -49,7 +49,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * @var     bool
      *
      */
-    public $emphazise_id = true;
+    public bool $emphasizeId = true;
     
     /**
      * If so: with witch tag (e.g. "em", "strong", "u", or "b")?  
@@ -57,7 +57,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * @access  public
      * @var     string
      */
-    public $emphazise_tag = "strong";
+    public string $emphasizeTag = "strong";
     
     /**
      * Own instance of this class  
@@ -71,7 +71,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      */
     public function initialize()
     {
-        // required by abstact class
+        // required by abstract class
     }
     
     /**
@@ -79,32 +79,32 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * Get the content of a given section (ref by ID) and also takes
      * care for the 'headers.inc.php' and //pre-//generated links in the <header>
      * of the page.
-     * 
-     * @global instance $database       Needed for nested/called modules.  
-     * @global array    $TEXT           Needed for nested/called modules.  
-     * @global instance $oLEPTON        Needed for nested/called modules.  
-     * @global integer  $page_id        Needed for nested/called modules.  
-     * @global integer  $section_id     Needed for nested/called modules.  
-     * @global array    $HEADERS        Needed for nested/called modules.  
-     * @global array    $mod_headers    Needed for required headers.inc.php.  
      *
-     * @param int       $sid            A valid section-id  
-     * @param string    $sPageSource    Call-by-Reference  
-     *                                  A *Pointer of the page-source (html).  
+     * @global object $database       Needed for nested/called modules.
+     * @global array    $TEXT           Needed for nested/called modules.
+     * @global object $oLEPTON        Needed for nested/called modules.
+     * @global integer  $page_id        Needed for nested/called modules.
+     * @global integer  $section_id     Needed for nested/called modules.
+     * @global array    $HEADERS        Needed for nested/called modules.
+     * @global array    $mod_headers    Needed for required headers.inc.php.
+     *
+     * @param int       $sid            A valid section-id
+     * @param string    $sPageSource    Call-by-Reference
+     *                                  A *Pointer of the page-source (html).
      * @return string   The generated source of the section.
      *
      * @code{.php}
-     *      // example  
+     *      // example
      *      display_section::getInstance()->getSection( 123, $droplet_HTML_source);
-     *  
+     *
      *      // droplet  -> belongs to the section_id 123 in this example
      *      [[display_section?sid=123]]
      * @endcode
-     *  
+     *
      */
-    public function getSection( int $sid, string &$sPageSource ) : string
+    public function getSection( int $sid, string &$sPageSource ): string
     {
-        //  [0] These values are properly used by the called "view" of the correspondenting module.
+        //  [0] These values are properly used by the called "view" of the called module.
         global $database, $TEXT, $oLEPTON, $page_id, $section_id, $HEADERS;
 
         $this->isError = false;
@@ -113,7 +113,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         //  [1] We have at last one char to return by default otherwise droplets will raise an error!
         $section_content = ' ';
 
-        //  [2] Lokking for section-values
+        //  [2] Locking for section-values
         $section = [];
 
         //  [2.1] query for 
@@ -128,11 +128,11 @@ class display_section extends LEPTON_abstract implements display_section\classes
         if(empty($section))
         {
             $this->isError = true;
-            if($this->emphazise_id === true)
+            if($this->emphasizeId === true)
             {
                 return sprintf( 
                     $this->language["NO_SECTION_FOUND"],
-                    "<".$this->emphazise_tag.">".$sid."</".$this->emphazise_tag.">" );
+                    "<".$this->emphasizeTag.">".$sid."</".$this->emphasizeTag.">" );
             }
             return sprintf( $this->language["NO_SECTION_FOUND"], $sid );
         }
@@ -173,7 +173,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
             {
                 foreach($mod_headers['frontend']['css'] as $aPathRef)
                 {
-                    // [2.2.6.1.1] is the link allready known? BIG Problem!
+                    // [2.2.6.1.1] is the link already known? BIG Problem!
                     if(false === $this->findInsideHeadersCSS( $aPathRef['file'] ) )
                     {
                         // [2.2.6.1.2] add to $HEADERS to avoid loading the source twice
@@ -195,7 +195,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
             {
                 foreach($mod_headers['frontend']['js'] as $aPathRef)
                 {
-                    // [2.2.6.2.1] is the link allready known?
+                    // [2.2.6.2.1] is the link already known?
                     if(!in_array($aPathRef, $HEADERS['frontend']['js']))
                     {
                         $look_up_paths['js'][] = $aPathRef;
@@ -307,7 +307,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         //  [3.0]   Pre-Process the content
         $oLEPTON->preprocess($section_content);
         
-        //  [4.0]   Return the contend to the "caller".
+        //  [4.0]   Return the content to the "caller".
         return $section_content;
     }
 
@@ -334,7 +334,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * @param   string  $module         The name of the module/directory  
      * @return  string  Generated (HTML-tags)  
      */
-    public function getModFooters( $module = "" ) : string
+    public function getModFooters(string $module = "" ): string
     {        
         // -- 0 Used by the required file(-s)
         global $mod_footers, $FOOTERS;
@@ -353,7 +353,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         require $sLookUpPath;
 
-        // -- 3.1   We are only interrests on js in frontend
+        // -- 3.1   We are only interests on js in frontend
         if(isset($mod_footers['frontend']['js']))
         {
             $sLinksToReturn .= "\n<!-- mod_footers of [".$module."] -->\n";
@@ -376,7 +376,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * 
      * @param string $sMessage  Call by Reference
      */
-    public function formatErrorMessage( string &$sMessage )
+    public function formatErrorMessage(string &$sMessage)
     {
         $oTWIG = lib_twig_box::getInstance();
         $oTWIG->registerModule("display_section", "display_section");
@@ -397,7 +397,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * @param   int     $iSectionID Any valid section_id.
      * @return  array
      */
-    static public function getHeaderBySection( int $iSectionID = 0) : array
+    static public function getHeaderBySection(int $iSectionID = 0): array
     {
         // -- 1
         global $mod_headers, $page_id;

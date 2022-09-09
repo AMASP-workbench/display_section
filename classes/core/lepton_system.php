@@ -75,9 +75,9 @@ class lepton_system
     /**
      * Holds the own instance of this class.
      *
-     * @var lepton_system
+     * @var lepton_system|null
      */
-    public static lepton_system $instance;
+    public static ?lepton_system $instance = null;
 
     /**
      * Holds the full path to the config.php

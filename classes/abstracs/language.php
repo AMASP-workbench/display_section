@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -18,6 +18,6 @@ namespace display_section\classes\abstracs;
 abstract class language
 {
     use \display_section\classes\traits\constants;
-    
-    const ABSTRACT_PARENT = __CLASS__;
+
+    public const ABSTRACT_PARENT = __CLASS__;
 }

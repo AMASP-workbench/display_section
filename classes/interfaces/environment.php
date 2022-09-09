@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -17,37 +17,36 @@ namespace display_section\classes\interfaces;
 
 interface environment
 {
-    const VERSION   = "0.2.0.0";
+    public const VERSION   = "0.2.0.0";
     /**
-     * [1.1.1]  The name of the moduledirectory without leading directory-seperator. 
-     * 
+     * [1.1.1]  The name of the moduledirectory without leading directory-seperator.
+     *
      * @access  public
-     * @var     string  The name of the moduledirectory without leading directory-seperator.  
+     * @var     string  The name of the moduledirectory without leading directory-seperator.
      */
-    const MODULES_DIRNAME = "modules/";
-    
-    /**
-     * [1.1.2]  Holds the path to the internal modules-directory.
-     * 
-     * @access  public
-     * @var     string  The internal name of the modules-directory with leading directory-seperator.  
-     */
-    const MODULES_DIR = "/".self::MODULES_DIRNAME;
+    public const MODULES_DIRNAME = "modules/";
 
     /**
-     * [1.2.1]  The name of the templates-directory without leading directory-seperator. 
-     * 
+     * [1.1.2]  Holds the path to the internal modules-directory.
+     *
      * @access  public
-     * @var     string  The name of the templates-directory without leading directory-seperator.  
-     */    
-    const TEMPLATES_DIRNAME = "templates/";
-    
+     * @var     string  The internal name of the modules-directory with leading directory-seperator.
+     */
+    public const MODULES_DIR = "/".self::MODULES_DIRNAME;
+
+    /**
+     * [1.2.1]  The name of the templates-directory without leading directory-seperator.
+     *
+     * @access  public
+     * @var     string  The name of the templates-directory without leading directory-seperator.
+     */
+    public const TEMPLATES_DIRNAME = "templates/";
+
     /**
      * [1.3.2]  Holds the path to the internal modules-directory.
-     * 
+     *
      * @access  public
-     * @var     string  The internal name of the modules-directory with leading directory-seperator.  
+     * @var     string  The internal name of the modules-directory with leading directory-seperator.
      */
-    const FRONTEND_DIR = "/frontend/";
-    
+    public const FRONTEND_DIR = "/frontend/";
 }

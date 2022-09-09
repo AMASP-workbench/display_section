@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -17,6 +17,5 @@ namespace display_section\classes\languages;
 
 class EN extends \display_section\classes\abstracs\language
 {
-    const NO_SECTION_FOUND = "There is no section with the id %s here!";
-
+    public const NO_SECTION_FOUND = "There is no section with the id %s here!";
 }

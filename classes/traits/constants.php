@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -21,7 +21,7 @@ trait constants
      * @return array
      * @throws \ReflectionException
      */
-    static function getConstants()
+    public static function getConstants()
     {
         // "static::class" here does the magic
         $reflectionClass = new \ReflectionClass(static::class);

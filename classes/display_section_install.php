@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -24,16 +24,16 @@ declare(strict_types=1);
  */
 class display_section_install
 {
-    const DROPLET_NAME          = "display_section";
-    const DROPLET_DESCRIPTION   = "An experimental private work";
-    const DROPLET_COMMENT       = "Use: [[display_section?sid=42]]";
+    public const DROPLET_NAME          = "display_section";
+    public const DROPLET_DESCRIPTION   = "An experimental private work";
+    public const DROPLET_COMMENT       = "Use: [[display_section?sid=42]]";
 
-    const DROPLET_SOURCE_FILE   = "/source/droplet.php";
-    
+    public const DROPLET_SOURCE_FILE   = "/source/droplet.php";
+
     /**
      *  How many first lines of the php-source of the droplet should be skipped?
      */
-    const DROPLETS_SOURCE_SKIP_LINES = 3;
+    public const DROPLETS_SOURCE_SKIP_LINES = 3;
 
     public function __construct()
     {
@@ -50,15 +50,15 @@ class display_section_install
     /**
      *  Uninstall and delete entries from DB table
      */
-    static public function uninstall(): void
+    public static function uninstall(): void
     {
         LEPTON_database::getInstance()->simple_query(
             "DELETE FROM `" . TABLE_PREFIX . "mod_droplets` WHERE `name`='" . self::DROPLET_NAME . "'"
         );
     }
-    
+
     /**
-     * Get the droplet sourcecode.  
+     * Get the droplet sourcecode.
      *
      * @return string
      */
@@ -72,9 +72,9 @@ class display_section_install
         // Skip first three lines/entries
         return implode("\n", array_slice($aTemp, self::DROPLETS_SOURCE_SKIP_LINES));
     }
-    
+
     /**
-     * Looks inside the db for an entry for the droplet.  
+     * Looks inside the db for an entry for the droplet.
      *
      * @return bool
      */
@@ -84,12 +84,12 @@ class display_section_install
             "SELECT `id` FROM `" . TABLE_PREFIX . "mod_droplets` WHERE `name`='" . self::DROPLET_NAME . "'"
         );
 
-        return ($mixedResult !== NULL);
+        return ($mixedResult !== null);
     }
-    
+
     /**
      * Insert an entry into the current database.
-     * 
+     *
      * @return bool
      */
     protected function install(): bool
@@ -110,12 +110,11 @@ class display_section_install
                 "show_wysiwyg" => 1
             ]
         );
-
     }
-    
+
     /**
      * Update an entry inside the current database.
-     * 
+     *
      * @return bool
      */
     protected function upgrade(): bool

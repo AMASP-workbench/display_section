@@ -4,7 +4,7 @@
  * This file is part of LEPTON Core, released under the GNU GPL
  * Please see LICENSE and COPYING files in your package for details, specially for terms and warranties.
  *
- * NOTICE:LEPTON CMS Package has several different licenses.
+ * NOTICE:LEPTON CMS Package has several - different licenses.
  * Please see the individual license in the header of each single file or info.php of modules and templates.
  *
  * @author          LEPTON Project
@@ -152,7 +152,7 @@ class lepton_system
         if (false === $allowed) {
             exit(sprintf(
                 self::FILE_ACCESS_NOT_ALLOWED,
-                filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING)
+                filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_SPECIAL_CHARS)
             ));
         }
     }

@@ -14,11 +14,13 @@
  */
 
 // include class.secure.php to protect this file and the whole CMS!
+use display_section\classes\core\lepton_system;
+
 if (!defined("SEC_FILE2")) {
     define("SEC_FILE2", "/classes/core/lepton_system.php");
 }
 if (defined('LEPTON_PATH')) {
-    \display_section\classes\core\lepton_system::testFile(__FILE__);
+    lepton_system::testFile(__FILE__);
 } else {
     $a = explode(DIRECTORY_SEPARATOR, __DIR__);
     $n = count($a);
@@ -30,13 +32,13 @@ if (defined('LEPTON_PATH')) {
         }
     }
 
-    if (class_exists("display_section\classes\core\lepton_system", true)) {
-        \display_section\classes\core\lepton_system::getInstance(__FILE__);
+    if (class_exists("display_section\classes\core\lepton_system")) {
+        lepton_system::getInstance(__FILE__);
     } else {
         trigger_error(
             sprintf(
             "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
-            filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_STRING)
+            filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_SPECIAL_CHARS)
         ),
             E_USER_ERROR
         );

@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -18,4 +18,4 @@ $files_to_register = [
     "precheck.php"  // @notice - 2022-01-22: not realy clear if this one is needed here
 ];
 
-LEPTON_secure::getInstance()->accessFiles( $files_to_register );
+LEPTON_secure::getInstance()->accessFiles($files_to_register);

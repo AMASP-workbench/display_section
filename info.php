@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -16,7 +16,7 @@
 $module_directory       = "display_section";
 $module_name            = "Display Section";
 $module_function        = "library";
-$module_version         = "0.2.1.3";
+$module_version         = "0.2.1.4";
 $module_platform        = "5.4.x";
 $module_delete          = true;
 $module_author          = "Dietrich Roland Pehlke (Aldus)";

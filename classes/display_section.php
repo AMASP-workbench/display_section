@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section
@@ -16,8 +16,8 @@ declare(strict_types=1);
  */
 
 /**
- * Description of class display_section  
- * 
+ * Description of class display_section
+ *
  * @author  Dietrich Roland Pehlke (Aldus)
  * @package development
  *
@@ -25,55 +25,55 @@ declare(strict_types=1);
 class display_section extends LEPTON_abstract implements display_section\classes\interfaces\environment
 {
     use display_section\classes\traits\html;
-    
+
     /**
-     * Is the returned sting an error message or not?  
-     * 
+     * Is the returned sting an error message or not?
+     *
      * @access  public
      * @var bool
      */
     public bool $isError = false;
-    
+
     /**
      * Holds the handled sectionId
      * @access  public
      * @var     integer Hold the current section id
-     * 
+     *
      */
     public int $iCurrentSectionID = 0;
-    
+
     /**
-     * Should the ID be emphasized in the error messages?  
-     * 
+     * Should the ID be emphasized in the error messages?
+     *
      * @access  public
      * @var     bool
      *
      */
     public bool $emphasizeId = true;
-    
+
     /**
-     * If so: with witch tag (e.g. "em", "strong", "u", or "b")?  
-     * 
+     * If so: with witch tag (e.g. "em", "strong", "u", or "b")?
+     *
      * @access  public
      * @var     string
      */
     public string $emphasizeTag = "strong";
-    
+
     /**
-     * Own instance of this class  
-     * 
+     * Own instance of this class
+     *
      * @access public
      */
-    public static $instance = NULL;
-    
+    public static $instance = null;
+
     /**
-     *  Required by the abstract class to initialize own values and class-properties  
+     *  Required by the abstract class to initialize own values and class-properties
      */
     public function initialize()
     {
         // required by abstract class
     }
-    
+
     /**
      *
      * Get the content of a given section (ref by ID) and also takes
@@ -102,21 +102,21 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * @endcode
      *
      */
-    public function getSection( int $sid, string &$sPageSource ): string
+    public function getSection(int $sid, string &$sPageSource): string
     {
         //  [0] These values are properly used by the called "view" of the called module.
         global $database, $TEXT, $oLEPTON, $page_id, $section_id, $HEADERS;
 
         $this->isError = false;
         $this->iCurrentSectionID = $sid;
-        
+
         //  [1] We have at last one char to return by default otherwise droplets will raise an error!
         $section_content = ' ';
 
         //  [2] Locking for section-values
         $section = [];
 
-        //  [2.1] query for 
+        //  [2.1] query for
         LEPTON_database::getInstance()->execute_query(
             "SELECT `section_id`, `module`, `page_id` FROM `".TABLE_PREFIX."sections` WHERE `section_id` = ".$sid,
             true,
@@ -125,29 +125,28 @@ class display_section extends LEPTON_abstract implements display_section\classes
         );
 
         //  [2.1.2] No section found: we exit the method direct returning an error message here
-        if(empty($section))
-        {
+        if (empty($section)) {
             $this->isError = true;
-            if($this->emphasizeId === true)
-            {
-                return sprintf( 
+            if ($this->emphasizeId === true) {
+                return sprintf(
                     $this->language["NO_SECTION_FOUND"],
-                    "<".$this->emphasizeTag.">".$sid."</".$this->emphasizeTag.">" );
+                    "<".$this->emphasizeTag.">".$sid."</".$this->emphasizeTag.">"
+                );
             }
-            return sprintf( $this->language["NO_SECTION_FOUND"], $sid );
+            return sprintf($this->language["NO_SECTION_FOUND"], $sid);
         }
-        
+
         //  [2.2]   Section is found
         //  [2.2.1] prepare some values to "call" the modules-view
-        $section_id = $section['section_id']; 
+        $section_id = $section['section_id'];
         $module     = $section['module'];
         $page_id    = $section['page_id'];
 
-        //  [2.2.2] Start buffering	
+        //  [2.2.2] Start buffering
         ob_start();
 
         //  [2.2.3] Require the view of the module
-        require LEPTON_PATH.self::MODULES_DIR.$module.'/view.php'; 
+        require LEPTON_PATH.self::MODULES_DIR.$module.'/view.php';
 
         //  [2.2.4] Get the generated content into a var.
         $section_content .= ob_get_contents();
@@ -160,8 +159,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         //  [2.2.6] Is a "headers.inc.php" in the module-directory?
         $sPathToHeaders = self::MODULES_DIR.$module."/headers.inc.php";
-        if(file_exists( LEPTON_PATH.$sPathToHeaders ) )
-        {
+        if (file_exists(LEPTON_PATH.$sPathToHeaders)) {
             global $mod_headers;
 
             $links .="\n<!-- headers from [".$module."]-->\n";
@@ -169,19 +167,16 @@ class display_section extends LEPTON_abstract implements display_section\classes
             require LEPTON_PATH.$sPathToHeaders;
 
             //  [2.2.6.1] css
-            if(isset($mod_headers['frontend']['css']))
-            {
-                foreach($mod_headers['frontend']['css'] as $aPathRef)
-                {
+            if (isset($mod_headers['frontend']['css'])) {
+                foreach ($mod_headers['frontend']['css'] as $aPathRef) {
                     // [2.2.6.1.1] is the link already known? BIG Problem!
-                    if(false === $this->findInsideHeadersCSS( $aPathRef['file'] ) )
-                    {
+                    if (false === $this->findInsideHeadersCSS($aPathRef['file'])) {
                         // [2.2.6.1.2] add to $HEADERS to avoid loading the source twice
                         $HEADERS['frontend']['css'][] = [
                             'media' => ($aPathRef['media'] ?? "all"),
                             'file'  => $aPathRef['file']
                         ];
-                        
+
                         $links_css .= self::buildLinkTag([
                                 'href'  => LEPTON_URL."/".$aPathRef['file'],
                                 'media' => ($aPathRef['media'] ?? "all")
@@ -191,18 +186,15 @@ class display_section extends LEPTON_abstract implements display_section\classes
             }
 
             //  [2.2.6.2] js
-            if(isset($mod_headers['frontend']['js']))
-            {
-                foreach($mod_headers['frontend']['js'] as $aPathRef)
-                {
+            if (isset($mod_headers['frontend']['js'])) {
+                foreach ($mod_headers['frontend']['js'] as $aPathRef) {
                     // [2.2.6.2.1] is the link already known?
-                    if(!in_array($aPathRef, $HEADERS['frontend']['js']))
-                    {
+                    if (!in_array($aPathRef, $HEADERS['frontend']['js'])) {
                         $look_up_paths['js'][] = $aPathRef;
                         // [2.2.6.2.1.1] add to $HEADERS to avoid loading the source twice
                         $HEADERS['frontend']['js'][] = $aPathRef;
-                        
-                        // [2.2.6.2.1.2] Build script-tag 
+
+                        // [2.2.6.2.1.2] Build script-tag
                         $links_js .= self::buildScriptTag([ 'src'   => LEPTON_URL."/".$aPathRef ]);
                     }
                 }
@@ -212,10 +204,10 @@ class display_section extends LEPTON_abstract implements display_section\classes
         //  Achtung! --- Hat die aktuelle Seite das default-template oder ein anderes?
         //  Ebenso: ist die aktuelle Seite vieleicht eine "Ergebnisseite der Suche"?
         //  Deshalb: $oLEPTON->page nachsehen!
-        $sTempTemplateName = ($oLEPTON->page["template"] == "") 
+        $sTempTemplateName = ($oLEPTON->page["template"] == "")
             ? DEFAULT_TEMPLATE
             : $oLEPTON->page["template"]
-            ;
+        ;
 
         $prefly_look_up_paths = [
             "css" => [
@@ -223,12 +215,12 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/frontend.css",
                 self::MODULES_DIRNAME.$module."/css/frontend.css",
                 self::MODULES_DIRNAME.$module."/frontend.css"
-            ], 
+            ],
             "js" => [
                 self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/js/frontend.js",
                 self::TEMPLATES_DIRNAME.$sTempTemplateName.self::FRONTEND_DIR.$module."/frontend.js",
                 self::MODULES_DIRNAME.$module."/js/frontend.js",
-                self::MODULES_DIRNAME.$module."/frontend.js"	
+                self::MODULES_DIRNAME.$module."/frontend.js"
             ]
         ];
 
@@ -237,10 +229,8 @@ class display_section extends LEPTON_abstract implements display_section\classes
             'js'  => []
         ];
 
-        foreach($prefly_look_up_paths["css"] as $aPathRef)
-        {
-            if( (file_exists(LEPTON_PATH."/".$aPathRef)) && (false === $this->findInsideHeadersCSS( $aPathRef ) ) )
-            {            
+        foreach ($prefly_look_up_paths["css"] as $aPathRef) {
+            if ((file_exists(LEPTON_PATH."/".$aPathRef)) && (false === $this->findInsideHeadersCSS($aPathRef))) {
                 // add to $HEADERS to avoid loading the source twice
                 $HEADERS['frontend']['css'][] = [
                         'file'  => $aPathRef,
@@ -249,34 +239,27 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
                 $links_css .= self::buildLinkTag(['href'  => LEPTON_URL."/".$aPathRef ]);
                 break; // stop loop
-                
             }
         }
 
-        foreach($prefly_look_up_paths["js"] as $aPathRef)
-        {
+        foreach ($prefly_look_up_paths["js"] as $aPathRef) {
             //  is the link allready known?
-            if(!in_array($aPathRef, $HEADERS['frontend']['js']))
-            {
+            if (!in_array($aPathRef, $HEADERS['frontend']['js'])) {
                 $look_up_paths['js'][] = $aPathRef;
 
                 // add to $HEADERS to avoid loading the source twice
                 $HEADERS['frontend']['js'][] = $aPathRef;
-
             }
         }
 
-         //  [2.3.0] loop through the possible paths ...
-        foreach($look_up_paths as $key=>$files)
-        {
-            foreach($files as $f)
-            {
-                if(true === file_exists(LEPTON_PATH."/".$f))
-                {
+        //  [2.3.0] loop through the possible paths ...
+        foreach ($look_up_paths as $key=>$files) {
+            foreach ($files as $f) {
+                if (true === file_exists(LEPTON_PATH."/".$f)) {
                     $links .= ($key === "css")
-                        ? self::buildLinkTag(  [ 'href'  => LEPTON_URL."/".$f ])
+                        ? self::buildLinkTag([ 'href'  => LEPTON_URL."/".$f ])
                         : self::buildScriptTag([ 'src'   => LEPTON_URL."/".$f ])
-                        ;
+                    ;
                 }
             }
         }
@@ -293,29 +276,29 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         // [2.5.0] footer?
         $sFooterSource = $this->getModFooters($module);
-        if($sFooterSource != "")
-        {
+        if ($sFooterSource != "") {
             $sPageSource = str_replace(
                 '</body>',
                 $sFooterSource.'</body>',
                 $sPageSource
             );
         }
-        
+
         ob_end_clean();
- 
+
         //  [3.0]   Pre-Process the content
         $oLEPTON->preprocess($section_content);
-        
+
         //  [4.0]   Return the content to the "caller".
         return $section_content;
     }
 
     /**
      *  Loop through $HEADERS['css'] to find a given link here!
-     * 
+     *
      */
-    protected function findInsideHeadersCSS(string $sPath = ""): bool {
+    protected function findInsideHeadersCSS(string $sPath = ""): bool
+    {
         global $HEADERS;
 
         foreach ($HEADERS['frontend']['css'] as $ref) {
@@ -328,40 +311,36 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
     /**
      * Try to get the footer.inc.php
-     * 
-     * @global  array   $mod_footers    Used by the required file(-s)  
-     * @global  array   $FOOTERS        Used by the required file(-s)  
-     * @param   string  $module         The name of the module/directory  
-     * @return  string  Generated (HTML-tags)  
+     *
+     * @global  array   $mod_footers    Used by the required file(-s)
+     * @global  array   $FOOTERS        Used by the required file(-s)
+     * @param   string  $module         The name of the module/directory
+     * @return  string  Generated (HTML-tags)
      */
-    public function getModFooters(string $module = "" ): string
-    {        
+    public function getModFooters(string $module = ""): string
+    {
         // -- 0 Used by the required file(-s)
         global $mod_footers, $FOOTERS;
-        
+
         // -- 1
         $sLinksToReturn = "";
-        
+
         // -- 2
         $sLookUpPath = LEPTON_PATH.self::MODULES_DIR.$module."/footers.inc.php";
-        
+
         // -- 3
-        if(!file_exists($sLookUpPath))
-        {
+        if (!file_exists($sLookUpPath)) {
             return $sLinksToReturn;
         }
 
         require $sLookUpPath;
 
         // -- 3.1   We are only interests on js in frontend
-        if(isset($mod_footers['frontend']['js']))
-        {
+        if (isset($mod_footers['frontend']['js'])) {
             $sLinksToReturn .= "\n<!-- mod_footers of [".$module."] -->\n";
-            
-            foreach($mod_footers['frontend']['js'] as $sTempPath)
-            {
-                if(file_exists(LEPTON_PATH."/".$sTempPath))
-                {
+
+            foreach ($mod_footers['frontend']['js'] as $sTempPath) {
+                if (file_exists(LEPTON_PATH."/".$sTempPath)) {
                     $sLinksToReturn .= "\n<script src='".LEPTON_URL."/".$sTempPath."'></script>\n";
                     // 3.1.1
                     $FOOTERS['js'][] = $sTempPath;
@@ -373,31 +352,31 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
     /**
      * Format the (error-) message by a template
-     * 
+     *
      * @param string $sMessage  Call by Reference
      */
     public function formatErrorMessage(string &$sMessage)
     {
         $oTWIG = lib_twig_box::getInstance();
         $oTWIG->registerModule("display_section", "display_section");
-        
+
         $sMessage = $oTWIG->render(
-                "@display_section/error.lte",
-                [
-                    "section_id" => $this->iCurrentSectionID,
-                    "message"    => $sMessage
-                ]
+            "@display_section/error.lte",
+            [
+                "section_id" => $this->iCurrentSectionID,
+                "message"    => $sMessage
+            ]
         );
     }
 
     /**
      * More or less experimental
-     * 
+     *
      * @global  array   $headers    Need for global access/require.
      * @param   int     $iSectionID Any valid section_id.
      * @return  array
      */
-    static public function getHeaderBySection(int $iSectionID = 0): array
+    public static function getHeaderBySection(int $iSectionID = 0): array
     {
         // -- 1
         global $mod_headers, $page_id;
@@ -411,19 +390,17 @@ class display_section extends LEPTON_abstract implements display_section\classes
             $sModuleInfo,
             false
         );
-        
-        if(!empty($sModuleInfo))
-        {
+
+        if (!empty($sModuleInfo)) {
             // save temp. current page_id
             $old_page_id = $page_id;
             // set page_id of the correspondenting section
             $page_id = $sModuleInfo['page_id'];
-            
+
             $sLookFileName = LEPTON_PATH.self::MODULES_DIR.$sModuleInfo['module']."/headers.inc.php";
 
             // -- 3
-            if(file_exists($sLookFileName))
-            {
+            if (file_exists($sLookFileName)) {
                 require $sLookFileName;
             }
             // restore the current page_id

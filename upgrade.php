@@ -2,7 +2,7 @@
 
 /**
  *  Display Section
- *  An experimental private module for LEPTON-CMS  
+ *  An experimental private module for LEPTON-CMS
  *
  *  @package        development
  *  @module         display_section

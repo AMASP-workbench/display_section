@@ -18,4 +18,5 @@ namespace display_section\classes\languages;
 class EN extends \display_section\classes\abstracs\language
 {
     public const NO_SECTION_FOUND = "There is no section with the id %s here!";
+    public const MODULE_DESCRIPTION = "Experimental private library for LEPTON-CMS.";
 }

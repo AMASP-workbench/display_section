@@ -124,7 +124,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
             false
         );
 
-        //  [2.1.2] No section found: we exit the method direct returning an error message here
+        //  [2.1.1] No section found: we exit the method direct returning an error message here
         if (empty($section)) {
             $this->isError = true;
             if ($this->emphasizeId === true) {
@@ -137,7 +137,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         }
 
         //  [2.2]   Section is found
-        //  [2.2.1] prepare some values to "call" the modules-view
+        //  [2.2.1] Prepare some values to "call" the modules-view
         $section_id = $section['section_id'];
         $module     = $section['module'];
         $page_id    = $section['page_id'];
@@ -166,7 +166,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
             require LEPTON_PATH.$sPathToHeaders;
 
-            //  [2.2.6.1] css
+            //  [2.2.6.1] CSS
             if (isset($mod_headers['frontend']['css'])) {
                 foreach ($mod_headers['frontend']['css'] as $aPathRef) {
                     // [2.2.6.1.1] is the link already known? BIG Problem!
@@ -185,25 +185,24 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 }
             }
 
-            //  [2.2.6.2] js
+            //  [2.2.6.2] JS
             if (isset($mod_headers['frontend']['js'])) {
                 foreach ($mod_headers['frontend']['js'] as $aPathRef) {
-                    // [2.2.6.2.1] is the link already known?
+                    // [2.2.6.2.1] Is the link already known?
                     if (!in_array($aPathRef, $HEADERS['frontend']['js'])) {
                         $look_up_paths['js'][] = $aPathRef;
-                        // [2.2.6.2.1.1] add to $HEADERS to avoid loading the source twice
+                        // [2.2.6.2.1.1] Add link to $HEADERS to avoid loading the source twice
                         $HEADERS['frontend']['js'][] = $aPathRef;
 
-                        // [2.2.6.2.1.2] Build script-tag
+                        // [2.2.6.2.1.2] Build the script-tag
                         $links_js .= self::buildScriptTag([ 'src'   => LEPTON_URL."/".$aPathRef ]);
                     }
                 }
             }
         }
 
-        //  Achtung! --- Hat die aktuelle Seite das default-template oder ein anderes?
-        //  Ebenso: ist die aktuelle Seite vieleicht eine "Ergebnisseite der Suche"?
-        //  Deshalb: $oLEPTON->page nachsehen!
+        //  Danger! --- Does the current page have the default template or another one?
+        //  Therefore: we've to look at "$oLEPTON->page" first!
         $sTempTemplateName = ($oLEPTON->page["template"] == "")
             ? DEFAULT_TEMPLATE
             : $oLEPTON->page["template"]

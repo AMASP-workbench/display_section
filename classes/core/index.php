@@ -24,8 +24,8 @@ if (defined('LEPTON_PATH')) {
 } else {
     $a = explode(DIRECTORY_SEPARATOR, __DIR__);
     $n = count($a);
-    for ($i=0;$i<$n;$i++,array_pop($a)) {
-        $fPath = implode(DIRECTORY_SEPARATOR, $a).SEC_FILE2;
+    for ($i = 0; $i < $n; $i++, array_pop($a)) {
+        $fPath = implode(DIRECTORY_SEPARATOR, $a) . SEC_FILE2;
         if (file_exists($fPath)) {
             require_once $fPath;
             break;
@@ -37,9 +37,9 @@ if (defined('LEPTON_PATH')) {
     } else {
         trigger_error(
             sprintf(
-            "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
-            filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_SPECIAL_CHARS)
-        ),
+                "<p>[ <em>%s</em> ]<br/>Can't include LEPTON_system!</p>",
+                filter_input(INPUT_SERVER, 'SCRIPT_NAME', FILTER_SANITIZE_SPECIAL_CHARS)
+            ),
             E_USER_ERROR
         );
     }

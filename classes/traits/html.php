@@ -38,7 +38,7 @@ trait html
      */
     public static function buildLinkTag(array $attribs=[]): string
     {
-        $sHTML = "\n<!-- build css-link by trait -->\n<link ";
+        $sHTML = "\n<!-- build css-link by trait -->\n<link";
 
         self::sanitizeCssAttribs($attribs);
 

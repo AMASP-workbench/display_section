@@ -24,7 +24,7 @@ trait html
      * @access  public
      *
      */
-    public static $CSS_ATTRIBUTES = [
+    public static array $CSS_ATTRIBUTES = [
         "rel"   => "stylesheet",
         "type"  => "text/css",
         "media" => "all"
@@ -34,13 +34,13 @@ trait html
      * Generates a (HTML-) link-tag
      *
      * @param   array   $attribs    Assoc. array with the attributes.
-     * @return  string  The gemerated (HTML-)link-tag.
+     * @return  string  The generated (HTML-)link-tag.
      */
     public static function buildLinkTag(array $attribs=[]): string
     {
         $sHTML = "\n<!-- build css-link by trait -->\n<link ";
 
-        self::sanitizeCssAtrribs($attribs);
+        self::sanitizeCssAttribs($attribs);
 
         foreach ($attribs as $key => $value) {
             $sHTML .= " ".$key."=\"".$value."\"";
@@ -64,12 +64,12 @@ trait html
     }
 
     /**
-     * Complements an given array of missing (default) entries.
+     * Complements a given array of missing (default) entries.
      *
-     * @param array $attribs    An assoc. array of CSS arrtributes. Call by reference.
+     * @param array $attribs    An assoc. array of CSS attributes. Call by reference.
      *
      */
-    public static function sanitizeCssAtrribs(array &$attribs=[]): void
+    public static function sanitizeCssAttribs(array &$attribs=[]): void
     {
         foreach (self::$CSS_ATTRIBUTES as $key => $value) {
             if (!isset($attribs[ $key ])) {

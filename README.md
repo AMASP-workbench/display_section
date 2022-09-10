@@ -5,7 +5,7 @@ _This is nothing more than a private playground._
 
 ### Requirements
 - [LEPTON CMS][1], Version >= 5.3
-- PHP 7.4 (8.0 recommented)
+- PHP 7.4 (8.0 recommended)
 
 ### similar to "sectionPicker"
 but  
@@ -19,19 +19,19 @@ but
 // sid is a valid section id
 ```
   
-Params|Description
------|-----
-*sid*|The requested section_id.
+| Params | Description               |
+|--------|---------------------------|
+| *sid*  | The requested section_id. |
 
 
 ### Template
 - error.lte
-- or ~/templates/*frontendtemplate*/frontend/display_section/error.lte
+- or ~/templates/*frontendTemplate*/frontend/display_section/error.lte
 
-Marker|Description
------|-----
-*message*|Holds the default (error-)message as string.  
-*section_id*|Holds the section_id that was requested.  
+| Marker       | Description                                  |
+|--------------|----------------------------------------------|
+| *message*    | Holds the default (error-)message as string. |
+| *section_id* | Holds the section_id that was requested.     |
 
 #### example given (twig)
 ```html

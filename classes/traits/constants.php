@@ -21,10 +21,19 @@ trait constants
      * @return array
      * @throws \ReflectionException
      */
-    public static function getConstants()
+    public static function getConstants(): array
     {
         // "static::class" here does the magic
-        $reflectionClass = new \ReflectionClass(static::class);
-        return $reflectionClass->getConstants();
+        try {
+            $reflectionClass = new \ReflectionClass(static::class);
+            if (!$reflectionClass) {
+                throw new \ReflectionException("Cannot get reflection!", 12345);
+            } else {
+                return $reflectionClass->getConstants();
+            }
+        } catch ( \ReflectionException $e) {
+            \LEPTON_tools::display($e->getMessage());
+        }
+        return [];
     }
 }

@@ -80,16 +80,8 @@ class display_section extends LEPTON_abstract implements display_section\classes
      * care for the 'headers.inc.php' and //pre-//generated links in the <header>
      * of the page.
      *
-     * @global object $database       Needed for nested/called modules.
-     * @global array    $TEXT           Needed for nested/called modules.
-     * @global object $oLEPTON        Needed for nested/called modules.
-     * @global integer  $page_id        Needed for nested/called modules.
-     * @global integer  $section_id     Needed for nested/called modules.
-     * @global array    $HEADERS        Needed for nested/called modules.
-     * @global array    $mod_headers    Needed for required headers.inc.php.
-     *
-     * @param int       $sid            A valid section-id
-     * @param string    $sPageSource    Call-by-Reference
+     * @param int    $sid           A valid section-id
+     * @param string $sPageSource   Call-by-Reference
      *                                  A *Pointer of the page-source (html).
      * @return string   The generated source of the section.
      *
@@ -100,6 +92,14 @@ class display_section extends LEPTON_abstract implements display_section\classes
      *      // droplet  -> belongs to the section_id 123 in this example
      *      [[display_section?sid=123]]
      * @endcode
+     *
+     * @global object   $database    Needed for nested/called modules.
+     * @global array    $TEXT        Needed for nested/called modules.
+     * @global object   $oLEPTON     Needed for nested/called modules.
+     * @global integer  $page_id     Needed for nested/called modules.
+     * @global integer  $section_id  Needed for nested/called modules.
+     * @global array    $HEADERS     Needed for nested/called modules.
+     * @global array    $mod_headers Needed for required headers.inc.php.
      *
      */
     public function getSection(int $sid, string &$sPageSource): string
@@ -130,7 +130,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
             if ($this->emphasizeId === true) {
                 return sprintf(
                     $this->language["NO_SECTION_FOUND"],
-                    "<".$this->emphasizeTag.">".$sid."</".$this->emphasizeTag.">"
+                    "<".$this->emphasizeTag . ">" . $sid . "</" . $this->emphasizeTag . ">"
                 );
             }
             return sprintf($this->language["NO_SECTION_FOUND"], $sid);
@@ -153,7 +153,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         //  [2.2.5] Try to get the frontend files of the module
         //  [2.2.5.1] Init temporary vars
-        $links="\n<!-- display section start [".$sid."]-->\n";
+        $links="\n<!-- display section start [" . $sid . "]-->\n";
         $links_css = "\n<!-- css[-] -->\n";
         $links_js = "\n<!-- js[-] -->\n";
 
@@ -230,7 +230,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         ];
 
         foreach ($prefly_look_up_paths["css"] as $aPathRef) {
-            if ((file_exists(LEPTON_PATH."/".$aPathRef)) && (false === $this->findInsideHeadersCSS($aPathRef))) {
+            if ((file_exists(LEPTON_PATH . "/" . $aPathRef)) && (false === $this->findInsideHeadersCSS($aPathRef))) {
                 // add to $HEADERS to avoid loading the source twice
                 $HEADERS['frontend']['css'][] = [
                         'file'  => $aPathRef,
@@ -326,7 +326,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         $sLinksToReturn = "";
 
         // -- 2
-        $sLookUpPath = LEPTON_PATH.self::MODULES_DIR.$module."/footers.inc.php";
+        $sLookUpPath = LEPTON_PATH . self::MODULES_DIR . $module . "/footers.inc.php";
 
         // -- 3
         if (!file_exists($sLookUpPath)) {
@@ -385,7 +385,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         // -- 2
         $sModuleInfo = [];
         LEPTON_database::getInstance()->execute_query(
-            "SELECT `module`,`page_id` FROM `".TABLE_PREFIX."sections` WHERE `section_id`=".$iSectionID,
+            "SELECT `module`,`page_id` FROM `" . TABLE_PREFIX . "sections` WHERE `section_id`=" . $iSectionID,
             true,
             $sModuleInfo,
             false
@@ -397,7 +397,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
             // set page_id of the correspondenting section
             $page_id = $sModuleInfo['page_id'];
 
-            $sLookFileName = LEPTON_PATH.self::MODULES_DIR.$sModuleInfo['module']."/headers.inc.php";
+            $sLookFileName = LEPTON_PATH . self::MODULES_DIR . $sModuleInfo['module'] . "/headers.inc.php";
 
             // -- 3
             if (file_exists($sLookFileName)) {

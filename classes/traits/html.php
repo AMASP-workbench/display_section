@@ -64,7 +64,7 @@ trait html
     }
 
     /**
-     * Complements aS given array of missing (default) entries.
+     * Complements a given array of missing (default) entries.
      *
      * @param array $attribs    An assoc. array of CSS attributes. Call by reference.
      *

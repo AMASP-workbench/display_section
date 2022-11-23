@@ -6,7 +6,7 @@
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.2.1
+ *  @version        0.2.2
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/

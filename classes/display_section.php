@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.2.1
+ *  @version        0.2.2
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -231,7 +231,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         foreach ($prefly_look_up_paths["css"] as $aPathRef) {
             if ((file_exists(LEPTON_PATH . "/" . $aPathRef)) && (false === $this->findInsideHeadersCSS($aPathRef))) {
                 // add to $HEADERS to avoid loading the source twice
-                $HEADERS['frontend']['css'][] = [
+                LEPTON_functions::$HEADERS['frontend']['css'][] = [
                         'file'  => $aPathRef,
                         'media' => 'all'
                     ];
@@ -243,11 +243,11 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         foreach ($prefly_look_up_paths["js"] as $aPathRef) {
             //  is the link allready known?
-            if (!in_array($aPathRef, $HEADERS['frontend']['js'])) {
+            if (!in_array($aPathRef, LEPTON_functions::$HEADERS['frontend']['js'])) {
                 $look_up_paths['js'][] = $aPathRef;
 
                 // add to $HEADERS to avoid loading the source twice
-                $HEADERS['frontend']['js'][] = $aPathRef;
+                LEPTON_functions::$HEADERS['frontend']['js'][] = $aPathRef;
             }
         }
 
@@ -298,9 +298,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      */
     protected function findInsideHeadersCSS(string $sPath = ""): bool
     {
-        global $HEADERS;
-
-        foreach ($HEADERS['frontend']['css'] as $ref) {
+        foreach (LEPTON_functions::$HEADERS['frontend']['css'] as $ref) {
             if ($ref['file'] === $sPath) {
                 return true; // found!
             }
@@ -319,7 +317,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
     public function getModFooters(string $module = ""): string
     {
         // -- 0 Used by the required file(-s)
-        global $mod_footers, $FOOTERS;
+        global $mod_footers;
 
         // -- 1
         $sLinksToReturn = "";
@@ -342,7 +340,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
                 if (file_exists(LEPTON_PATH."/".$sTempPath)) {
                     $sLinksToReturn .= "\n<script src='".LEPTON_URL."/".$sTempPath."'></script>\n";
                     // 3.1.1
-                    $FOOTERS['js'][] = $sTempPath;
+                    LEPTON_functions::$FOOTERS['js'][] = $sTempPath;
                 }
             }
         }

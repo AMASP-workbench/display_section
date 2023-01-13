@@ -243,11 +243,11 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         foreach ($prefly_look_up_paths["js"] as $aPathRef) {
             //  is the link allready known?
-            if (!in_array($aPathRef, LEPTON_functions::$HEADERS['frontend']['js'])) {
+            if (!in_array($aPathRef, LEPTON_core::$HEADERS['frontend']['js'])) {
                 $look_up_paths['js'][] = $aPathRef;
 
                 // add to $HEADERS to avoid loading the source twice
-                LEPTON_functions::$HEADERS['frontend']['js'][] = $aPathRef;
+                LEPTON_core::$HEADERS['frontend']['js'][] = $aPathRef;
             }
         }
 
@@ -298,7 +298,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      */
     protected function findInsideHeadersCSS(string $sPath = ""): bool
     {
-        foreach (LEPTON_functions::$HEADERS['frontend']['css'] as $ref) {
+        foreach (LEPTON_core::$HEADERS['frontend']['css'] as $ref) {
             if ($ref['file'] === $sPath) {
                 return true; // found!
             }

@@ -18,19 +18,17 @@ namespace display_section\classes\traits;
 trait constants
 {
     /**
+     * Get the constants of the further inherited class.
+     *
      * @return array
-     * @throws \ReflectionException
      */
     public static function getConstants(): array
     {
         // "static::class" here does the magic
         try {
             $reflectionClass = new \ReflectionClass(static::class);
-            if (!$reflectionClass) {
-                throw new \ReflectionException("Cannot get reflection!", 12345);
-            } else {
-                return $reflectionClass->getConstants();
-            }
+            return $reflectionClass->getConstants();
+
         } catch ( \ReflectionException $e) {
             \LEPTON_tools::display($e->getMessage());
         }

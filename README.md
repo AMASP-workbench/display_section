@@ -5,9 +5,9 @@ _This is nothing more than a private playground._
 
 ### Requirements
 - [LEPTON CMS][1], Version >= 5.3
-- PHP 7.4 (8.0 recommended)
+- PHP 8.0 (8.1 recommended)
 
-### similar to "sectionPicker"
+### Similar to "sectionPicker"
 but  
 - handles also header.inc and footer.inc.php of the specific module.
 - handles also the .css and .js files of the module.

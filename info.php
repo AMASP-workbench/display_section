@@ -16,7 +16,7 @@
 $module_directory       = "display_section";
 $module_name            = "Display Section";
 $module_function        = "library";
-$module_version         = "0.2.2.0";
+$module_version         = "0.2.3.0";
 $module_platform        = "6.0.0";
 $module_delete          = true;
 $module_author          = "Dietrich Roland Pehlke (Aldus)";

@@ -57,7 +57,7 @@ class lepton_system
     /**
      * Error message: access to requested file is not allowed.
      */
-    public const FILE_ACCESS_NOT_ALLOWED = '<p><strong>ACCESS DENIED! [L5]</strong><br>Invalid call of <em>%s</em></p>';
+    public const FILE_ACCESS_NOT_ALLOWED = '<p><strong>ACCESS DENIED! [L6]</strong><br>Invalid call of <em>%s</em></p>';
 
     /**
      * Base path of the installation. (root)

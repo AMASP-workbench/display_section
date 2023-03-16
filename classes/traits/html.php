@@ -6,7 +6,7 @@
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.2.1
+ *  @version        0.2.2
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -17,6 +17,7 @@ namespace display_section\classes\traits;
 
 trait html
 {
+    static int $counter = 0;
     /**
      * An array with a set of (css-link) attributes and their default values.
      *
@@ -38,7 +39,8 @@ trait html
      */
     public static function buildLinkTag(array $attribs=[]): string
     {
-        $sHTML = "\n<!-- build css-link by trait -->\n<link ";
+        self::$counter++;
+        $sHTML = "\n<!-- build css-link by trait [" . self::$counter . "] -->\n<link";
 
         self::sanitizeCssAttribs($attribs);
 
@@ -56,7 +58,8 @@ trait html
      */
     public static function buildScriptTag(array $attribs=[]): string
     {
-        $sHTML = "\n<!-- build by trait -->\n<script ";
+        self::$counter++;
+        $sHTML = "\n<!-- build by trait [" . self::$counter . "] -->\n<script ";
         foreach ($attribs as $key => $value) {
             $sHTML .= " ".$key."=\"".$value."\"";
         }

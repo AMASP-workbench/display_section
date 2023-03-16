@@ -1,10 +1,10 @@
 # display section
 
-Private module study for [LEPTON-CMS][1] 5.x  
+Private module study for [LEPTON-CMS][1] 5.x|6.x  
 _This is nothing more than a private playground._
 
 ### Requirements
-- [LEPTON CMS][1], Version >= 5.3
+- [LEPTON CMS][1], Version >= 5.3 (6.0 recommended)
 - PHP 8.0 (8.1 recommended)
 
 ### Similar to "sectionPicker"
@@ -42,6 +42,6 @@ but
 
 ```
 
-2022.9 - Aldus
+2023.2 - Aldus
 
 [1]: https://lepton-cms.org "LEPTON CMS"

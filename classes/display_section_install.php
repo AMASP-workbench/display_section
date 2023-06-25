@@ -90,9 +90,9 @@ class display_section_install
     /**
      * Insert an entry into the current database.
      *
-     * @return bool
+     * @return int
      */
-    protected function install(): bool
+    protected function install(): int
     {
         return LEPTON_database::getInstance()->build_and_execute(
             "insert",
@@ -115,9 +115,9 @@ class display_section_install
     /**
      * Update an entry inside the current database.
      *
-     * @return bool
+     * @return int
      */
-    protected function upgrade(): bool
+    protected function upgrade(): int
     {
         return LEPTON_database::getInstance()->build_and_execute(
             "update",

@@ -44,6 +44,6 @@ if (defined('LEPTON_PATH')) {
 
 // Checking Requirements
 $PRECHECK['LEPTON_VERSION'] = [
-    'VERSION' => '5.3',
+    'VERSION' => '6.0',
     'OPERATOR' => '>='
 ];

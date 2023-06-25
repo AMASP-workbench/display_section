@@ -53,7 +53,7 @@ class display_section_install
     public static function uninstall(): void
     {
         LEPTON_database::getInstance()->simple_query(
-            "DELETE FROM `" . TABLE_PREFIX . "mod_droplets` WHERE `name`='" . self::DROPLET_NAME . "'"
+            "DELETE FROM `".TABLE_PREFIX."mod_droplets` WHERE `name`='".self::DROPLET_NAME."'"
         );
     }
 

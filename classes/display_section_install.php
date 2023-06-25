@@ -81,7 +81,7 @@ class display_section_install
     protected function isInstalled(): bool
     {
         $mixedResult = LEPTON_database::getInstance()->get_one(
-            "SELECT `id` FROM `" . TABLE_PREFIX . "mod_droplets` WHERE `name`='" . self::DROPLET_NAME . "'"
+            "SELECT `id` FROM `".TABLE_PREFIX."mod_droplets` WHERE `name`='".self::DROPLET_NAME."'"
         );
 
         return ($mixedResult !== null);

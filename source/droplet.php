@@ -3,7 +3,7 @@
 // E.g. for an internal version-string like "0.1.3.23 - 2021-10-03"
 /**
  *
- *  @version 0.2.1.3
+ *  @version 0.2.3.0
  */
 global $database, $TEXT, $oLEPTON, $page_id, $section_id, $HEADERS, $FOOTERS;
 

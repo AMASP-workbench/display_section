@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.2.3
+ *  @version        0.2.4
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -53,7 +53,7 @@ class display_section_install
     public static function uninstall(): void
     {
         LEPTON_database::getInstance()->simple_query(
-            "DELETE FROM `".TABLE_PREFIX."mod_droplets` WHERE `name`='".self::DROPLET_NAME."'"
+            "DELETE FROM ".TABLE_PREFIX."mod_droplets WHERE name='".self::DROPLET_NAME."'"
         );
     }
 
@@ -81,7 +81,7 @@ class display_section_install
     protected function isInstalled(): bool
     {
         $mixedResult = LEPTON_database::getInstance()->get_one(
-            "SELECT `id` FROM `".TABLE_PREFIX."mod_droplets` WHERE `name`='".self::DROPLET_NAME."'"
+            "SELECT `id` FROM ".TABLE_PREFIX."mod_droplets WHERE `name`='".self::DROPLET_NAME."'"
         );
 
         return ($mixedResult !== null);

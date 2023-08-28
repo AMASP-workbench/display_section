@@ -6,14 +6,14 @@
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.2.3
+ *  @version        0.2.4
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
  *
  */
 
-namespace display_section\classes\abstracs;
+namespace display_section\classes\abstracts;
 
 abstract class language
 {

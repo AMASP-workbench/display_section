@@ -17,39 +17,43 @@
 
 namespace display_section\classes\core;
 
+use LEPTON_secure;
+use function dirname;
+use function file_exists;
+use function header;
+
 /**
  * NOTICE - this one needs another sec-header block!
  * Current version is
-
-// include secure-system to protect this file and the whole CMS!
-if(!defined("SEC_SYSTEM"))
-{
-    define("SEC_SYSTEM", "/framework/classes/lepton_system.php" );
-}
-if (defined('LEPTON_PATH'))
-{
-    \framework\classes\lepton_system::testFile( __FILE__ );
-} else {
-    $root = "../";
-    $level = 1;
-    while ( ($level++ < 10) && (!file_exists($root.SEC_SYSTEM)))
-    {
-        $root .= "../";
-    }
-    if (file_exists($root.SEC_SYSTEM)) {
-        require_once $root.SEC_SYSTEM;
-        \framework\classes\lepton_system::getInstance( __FILE__ );
-    } else {
-        trigger_error(
-            sprintf("[ <strong>%s</strong> ] Can't include LEPTON_system!",
-                filter_input(INPUT_SERVER,'SCRIPT_NAME', FILTER_SANITIZE_STRING),
-                E_USER_ERROR
-            )
-        );
-    }
-}
-// end include secure-system
-
+ *
+* // include secure-system to protect this file and the whole CMS!
+* if(!defined("SEC_SYSTEM"))
+* {
+    * define("SEC_SYSTEM", "/framework/classes/lepton_system.php" );
+* }
+* if (defined('LEPTON_PATH'))
+* {
+    * \framework\classes\lepton_system::testFile( __FILE__ );
+* } else {
+    * $root = "../";
+    * $level = 1;
+    * while ( ($level++ < 10) && (!file_exists($root.SEC_SYSTEM)))
+    * {
+        * $root .= "../";
+    * }
+    * if (file_exists($root.SEC_SYSTEM)) {
+        * require_once $root.SEC_SYSTEM;
+        * \framework\classes\lepton_system::getInstance( __FILE__ );
+    * } else {
+        * trigger_error(
+            * sprintf("[ <strong>%s</strong> ] Can't include LEPTON_system!",
+                * filter_input(INPUT_SERVER,'SCRIPT_NAME', FILTER_SANITIZE_STRING),
+                * E_USER_ERROR
+            * )
+        * );
+    * }
+* }
+* // end include secure-system
  */
 
 class lepton_system
@@ -141,10 +145,10 @@ class lepton_system
 
     protected function testFileAllowed(): void
     {
-        $oSecure = \LEPTON_secure::getInstance();
-        $sLookUpPath = \dirname($this->fileToTest)."/register_class_secure.php";
+        $oSecure = LEPTON_secure::getInstance();
+        $sLookUpPath = dirname($this->fileToTest)."/register_class_secure.php";
 
-        if (\file_exists($sLookUpPath)) {
+        if (file_exists($sLookUpPath)) {
             require $sLookUpPath;
         }
         $allowed = $oSecure->testFile($this->fileToTest);
@@ -184,7 +188,7 @@ class lepton_system
         return self::getInstance()->install_path;
     }
 
-    public static function getConfigPath()
+    public static function getConfigPath(): string
     {
         return self::getInstance()->config_path;
     }
@@ -192,9 +196,9 @@ class lepton_system
     protected function lookForConfig(): void
     {
         $this->config_path = self::$LEPTON_PATH . "config/config.php";
-        if (!\file_exists($this->config_path)) {
-            if (\file_exists($this->install_path)) {
-                \header("Location: ".$this->install_path);
+        if (!file_exists($this->config_path)) {
+            if (file_exists($this->install_path)) {
+                header("Location: ".$this->install_path);
                 exit();
             } else {
                 // Problem: no config.php nor installation files...

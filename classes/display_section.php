@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  *  @package        development
  *  @module         display_section
- *  @version        0.2.3
+ *  @version        0.2.4
  *  @author         Dietrich Roland Pehlke (Aldus)
  *  @license        CC BY 3.0
  *  @license_terms  https://creativecommons.org/licenses/by/3.0/
@@ -119,7 +119,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
 
         //  [2.1] query for
         LEPTON_database::getInstance()->execute_query(
-            "SELECT `section_id`, `module`, `page_id` FROM `".TABLE_PREFIX."sections` WHERE `section_id` = ".$sid,
+            "SELECT `section_id`, `module`, `page_id` FROM ".TABLE_PREFIX."sections WHERE `section_id` = ".$sid,
             true,
             $section,
             false
@@ -371,7 +371,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
      *
      * @param string $sMessage  Call by Reference
      */
-    public function formatErrorMessage(string &$sMessage)
+    public function formatErrorMessage(string &$sMessage): void
     {
         $oTWIG = lib_twig_box::getInstance();
         $oTWIG->registerModule("display_section", "display_section");
@@ -401,7 +401,7 @@ class display_section extends LEPTON_abstract implements display_section\classes
         // -- 2
         $sModuleInfo = [];
         LEPTON_database::getInstance()->execute_query(
-            "SELECT `module`,`page_id` FROM `" . TABLE_PREFIX . "sections` WHERE `section_id`=" . $iSectionID,
+            "SELECT `module`,`page_id` FROM ".TABLE_PREFIX."sections WHERE section_id=".$iSectionID,
             true,
             $sModuleInfo,
             false

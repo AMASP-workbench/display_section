@@ -13,5 +13,4 @@
  *
  */
 
-
 $MOD_DISPLAY_SECTION = display_section\classes\languages\EN::getConstants();

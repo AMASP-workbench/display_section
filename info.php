@@ -22,5 +22,5 @@ $module_delete          = true;
 $module_author          = "Dietrich Roland Pehlke (Aldus)";
 $module_license         = "CC BY 3.0";
 $module_license_terms   = "https://creativecommons.org/licenses/by/3.0/deed.de";
-$module_description     = "Experimental private library.";
+$module_description     = "Experimental private module for LEPTON-CMS.";
 $module_guid            = "D31FA985-757A-4160-AAF8-B69EFDBFFA76";

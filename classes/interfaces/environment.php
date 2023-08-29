@@ -17,7 +17,7 @@ namespace display_section\classes\interfaces;
 
 interface environment
 {
-    public const VERSION   = "0.2.0.0";
+    public const VERSION   = "0.2.4.0";
     /**
      * [1.1.1]  The name of the moduleDirectory without leading directory separator.
      *

@@ -1,9 +1,25 @@
 <?php
 
-require_once dirname(__DIR__, 5) . "/phpunit/phpunit.phar";
+/**
+ *  Display Section
+ *  An experimental private module for LEPTON-CMS
+ *
+ *  @package        development
+ *  @module         display_section
+ *  @version        0.2.4
+ *  @author         Dietrich Roland Pehlke (Aldus)
+ *  @license        CC BY 3.0
+ *  @license_terms  https://creativecommons.org/licenses/by/3.0/
+ *
+ */
 
-require_once dirname(__DIR__, 3) . "/config/config.php";
+//  [1] These "requirements" could be in an external file declared for L*
+require_once dirname(__DIR__, 5)."/upload/framework/functions/function.lepton_autoloader.php";
+spl_autoload_register("lepton_autoloader", true);
 
+require_once dirname(__DIR__, 4) . "/config/config.php";
+
+//  [3]
 use PHPUnit\Framework\TestCase;
 
 class display_sectionTest extends TestCase
@@ -22,7 +38,7 @@ class display_sectionTest extends TestCase
         self::assertEquals($expected, $actual);
     }
 
-    public function buildLinkTagProvider(): array
+    public static function buildLinkTagProvider(): array
     {
         return [
             'only href' => [
@@ -31,7 +47,7 @@ class display_sectionTest extends TestCase
                     'media' => "print"
                 ],
                 'expected' => "\n"
-                    . '<!-- build css-link by trait -->'
+                    . '<!-- build css-link by trait [1] -->'
                     . "\n"
                     . '<link href="http://localhost:8080/projekte/LEPTON_5/upload/templates/workbench/css/template.css" media="print" rel="stylesheet" type="text/css">'
                     . "\n"
@@ -43,7 +59,7 @@ class display_sectionTest extends TestCase
                     'media' => "is overwritten"
                 ],
                 'expected' => "\n"
-                    . '<!-- build css-link by trait -->'
+                    . '<!-- build css-link by trait [2] -->'
                     . "\n"
                     . '<link data-default="data-default is added" data-text="any text is added" media="is overwritten" rel="stylesheet" type="text/css">'
                     . "\n"
